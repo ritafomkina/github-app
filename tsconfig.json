@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -13,16 +14,28 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@core": ["./app/core"],
+      "@core/*": ["./app/core/*"],
+      "@layout": ["./app/layout"],
+      "@layout/*": ["./app/layout/*"],
+      "@modules": ["./app/modules"],
+      "@modules/*": ["./app/modules/*"],
+      "@shared": ["./app/shared"],
+      "@shared/*": ["./app/shared/*"],
+      "@assets": ["./assets"],
+      "@assets/*": ["./assets/*"],
+      "@environments": ["./environments"],
+      "@environments/*": ["./environments/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:github-app": "node dist/github-app/server/server.mjs"
+    "lint": "ng lint --fix && prettier --write .",
+    "check": "prettier --check ."
   },
   "private": true,
   "dependencies": {
@@ -16,6 +17,7 @@
     "@angular/compiler": "^17.1.0",
     "@angular/core": "^17.1.0",
     "@angular/forms": "^17.1.0",
+    "@angular/material": "^17.0.5",
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/platform-server": "^17.1.0",
@@ -39,6 +41,13 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.1.1",
+    "prettier-eslint": "^16.2.0",
+    "stylelint": "^16.1.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
     "typescript": "~5.3.2"
   }
 }
