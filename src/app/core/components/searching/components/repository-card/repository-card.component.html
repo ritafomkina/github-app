@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card__content">
+  <div class="card__data card__data_author">
+    <img class="card__avatar" src="{{card.owner.avatar_url}}" alt="author-avatar">
+    <div class="card__author-info">
+      <p class="card__label">Автор:</p>
+      <h5 class="card__author">
+        {{card.owner.login}}</h5>
+    </div>
+    </div>
+
+  <div class="card__data card__data_title">
+    <p class="card__label">Название:</p>
+    <h5 class="card__title">
+      {{card.full_name}}</h5>
+  </div>
+
+
+
+  </div>
+  <div class="card__content">
+    <p class="metadata__item metadata__item_creation-date">Дата создания: {{ card.created_at| date: 'dd.MM.yyyy' }}</p>
+    <p class="metadata__item metadata__item_stars">{{card.stargazers_count}}</p>
+    <p class="metadata__item metadata__item_forks">{{card.forks}}</p>
+    <p class="metadata__item metadata__item_languages">{{card.language}}</p>
+  </div>
+</div>

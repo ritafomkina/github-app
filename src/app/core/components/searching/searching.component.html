@@ -1,0 +1,33 @@
+<div class="searching">
+  <div class="searching__header">
+    <h3 class="searching__title">Введите название репозитория</h3>
+
+   <form class="searching__form">
+  <mat-form-field class="form-full-width">
+    <input
+    matInput #message maxlength="100" placeholder="..."
+    (input)="search($event)">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Выберите язык</mat-label>
+    <mat-select>
+      @for (language of languages; track language) {
+        <mat-option [value]="language">{{language}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</form>
+
+
+  </div>
+  <div class="searching__result"
+  (scroll)="onScroll($event)">
+    @for (card of cards; track card) {
+      <app-repository-card [card]="card"></app-repository-card>
+    }
+  </div>
+  <mat-spinner
+  *ngIf="isLoading"
+  class="searching__loader"></mat-spinner>
+
+</div>

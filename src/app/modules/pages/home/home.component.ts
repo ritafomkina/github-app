@@ -9,7 +9,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 export class HomeComponent {
   constructor() {}
 
-  ngOnInit() {
-    console.log('init')
+  public isVisibleSearching: boolean = false
+
+  public showSearching():void {
+    this.isVisibleSearching = !this.isVisibleSearching
   }
 }

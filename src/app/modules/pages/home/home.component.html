@@ -1,2 +1,16 @@
-<div>searching...
+<div class="main">
+  <div class="main__slogan">“Не судите, а просто пейте вино и радуйтесь летнему бризу”
+    – Сальвадор Дали.
+    </div>
+    <div class="main__content">
+      <h1 class="main__title">GitHub Explorer</h1>
+      <p class="main__description">Приложение для поиска репозиториев на GitHub! Исследуйте мир кода, находите интересные проекты и присоединяйтесь к сообществу разработчиков. Простой в использовании интерфейс и мощный поиск помогут вам найти именно то, что вам нужно. Узнайте о последних трендах, исследуйте новые технологии и делитесь своими находками с друзьями. Давайте начнем исследовать GitHub вместе!</p>
+      <button mat-raised-button
+      (click)="showSearching()">Lets go</button>
+      <app-searching
+      *ngIf="isVisibleSearching"
+      class="main__searching"></app-searching>
+    </div>
+
+
 </div>

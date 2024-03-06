@@ -1,0 +1,62 @@
+
+:host {
+  display: block;
+  background-image: url('assets/images/pattern.png');
+  height: 100vh;
+}
+
+.main {
+  padding: 2rem 4rem;
+  &__content {
+    margin-top: 3rem;
+    max-width: 80rem;
+  }
+}
+
+.main__slogan {
+  font-family: 'Roboto-Italic';
+  font-size: 1.25rem;
+  line-height: 1;
+  max-width: 40rem;
+  padding: 1rem;
+  margin: 0 0 0 auto;
+}
+.main__title {
+  font-family: 'Inter-SemiBold';
+  font-size: 3rem;
+  letter-spacing: -.05em;
+  line-height: 1;
+  color: #242424;
+}
+.main__description {
+  font-family: 'Inter-Regular';
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  color: #737373;
+}
+
+.main__searching {
+}
+
+
+.mdc-button  {
+  background: #f2f2f2 !important;
+  width: 15rem;
+  letter-spacing: -.03em;
+  cursor: pointer;
+  border: 0 transparent;
+  font-size: 1rem !important;
+  border-radius: 100rem;
+  padding: 0.8125rem 1rem;
+  line-height: 1;
+  margin-top: 2rem;
+}
+
+.mdc-button::after {
+  content: '';
+  background-image: url('assets/images/right-arrow.png');
+  background-size: 1rem;
+  height: 1rem;
+  width: 1rem;
+ margin-left: 1rem;
+}

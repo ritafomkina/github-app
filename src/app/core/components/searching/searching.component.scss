@@ -1,0 +1,41 @@
+.searching {
+  display: flex;
+  flex-wrap: wrap;
+  &__header {
+    width: 100%;
+  }
+  &__title {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+  }
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__result{
+    background-color: #d0f29e;
+    overflow-x: auto;
+    max-height: 700px;
+  }
+
+}
+
+.searching__icon {
+}
+.searching__input {
+}
+
+.form-full-width{
+  width: 30rem;
+}
+.mdc-text-field__input {
+  font-size: 1rem !important;
+}
+
+mat-form-field {
+  padding: 0 1rem;
+}
+
+.searching__loader {
+  margin: 0 auto;
+}
