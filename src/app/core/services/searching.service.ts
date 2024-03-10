@@ -8,6 +8,7 @@ import {
   IGutHubUserResponse,
   IRepository,
 } from '@core'
+import { environment } from 'app/environments/environment.prod'
 import { Observable, catchError, map, of, switchMap } from 'rxjs'
 
 @Injectable({
@@ -38,7 +39,8 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = process.env['GITHUB_TOKEN'];
+  private readonly _token = environment.ghToken;
+
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
@@ -66,7 +68,6 @@ export class SearchingService {
     language?: string
   ): Observable<IGitHubRepositoryResponse[]> {
     const searchRepoUrl = `${this._apiUrl}/search/repositories?q=${searchTerm}${language ? `+language:${language}` : ''}&per_page=${this._repoPerPage}&page=${this.repositoriesPage}`
-
     const headers = new HttpHeaders({
       Authorization: `token ${this._token}`,
     })
