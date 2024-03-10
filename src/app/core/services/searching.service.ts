@@ -8,7 +8,7 @@ import {
   IGutHubUserResponse,
   IRepository,
 } from '@core'
-import { environment } from 'app/environments/environment.prod'
+import { environment } from '@environments/environment.prod'
 import { Observable, catchError, map, of, switchMap } from 'rxjs'
 
 @Injectable({

@@ -5,10 +5,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { config } from 'dotenv';
 import { enableProdMode } from '@angular/core';
-import { environment } from 'app/environments/environment.prod';
-config();
+import { environment } from '@environments/environment.prod';
 
 if (environment.production) {
   enableProdMode();

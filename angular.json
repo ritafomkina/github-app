@@ -61,15 +61,6 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
-            },
-            "production-dotenv": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "environmentFile": "src/environments/.env"
             }
           },
           "defaultConfiguration": "production"
