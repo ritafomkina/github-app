@@ -169,7 +169,7 @@ export class SearchingComponent implements OnInit, OnDestroy {
       )
       .subscribe(repos => {
         this._cards.set([...this._cards(), ...repos])
-        this.isEmptyResult = !repos.length
+        this.isEmptyResult = !this._cards().length
         this._isLoading.set(false)
       })
   }
