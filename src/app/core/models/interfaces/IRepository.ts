@@ -9,6 +9,8 @@ export interface IRepository {
   created_at: string
   html_url: string,
   homepage: string,
+  readme_url: string,
+  readme_content: string,
 }
 
 interface Owner

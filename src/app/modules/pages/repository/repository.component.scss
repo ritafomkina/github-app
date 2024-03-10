@@ -5,8 +5,7 @@
   padding-top: 1rem;
 }
 .repository {
-  width: 60%;
-  height: 80%;
+  width: 80%;
   padding: 4rem;
   &__control-card,
   &__info-card {
@@ -49,6 +48,7 @@
   &__info-card {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   &__author-avatar {
     width: 5rem;

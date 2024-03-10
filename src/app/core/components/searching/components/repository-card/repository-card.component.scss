@@ -4,7 +4,7 @@
 }
 
 .card {
-  font-family: 'Roboto-Regular';
+  font-family: "Roboto-Regular";
   display: grid;
   grid-template-columns: 20% 30% 20% 30%;
   grid-auto-flow: column;
@@ -57,32 +57,32 @@
   }
 
   &__creation-date::before {
-    content: '';
-    background-image: url('assets/images/calendar (1).png');
+    content: "";
+    background-image: url("assets/images/calendar (1).png");
     background-size: 1rem;
     height: 1rem;
     width: 1rem;
     margin-right: 0.5rem;
   }
   &__stars::before {
-    content: '';
-    background-image: url('assets/images/star.png');
+    content: "";
+    background-image: url("assets/images/star.png");
     background-size: 1rem;
     height: 1rem;
     width: 1rem;
     margin-right: 0.5rem;
   }
   &__forks::before {
-    content: '';
-    background-image: url('assets/images/git.png');
+    content: "";
+    background-image: url("assets/images/git.png");
     background-size: 1rem;
     height: 1rem;
     width: 1rem;
     margin-right: 0.5rem;
   }
   &__languages::before {
-    content: '';
-    background-image: url('assets/images/coding.png');
+    content: "";
+    background-image: url("assets/images/coding.png");
     background-size: 1rem;
     height: 1rem;
     width: 1rem;

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { IRepository, SearchingService } from '@core'
+import { MarkdownService } from 'ngx-markdown'
 import { Observable, Subject, takeUntil } from 'rxjs'
 
 @Component({
@@ -14,13 +15,20 @@ export class RepositoryComponent implements OnInit, OnDestroy {
   public radioButtonArray: string[] = ['Автор', 'Репозиторий']
   public isUserCard: boolean = false
   public defaultCheck: string = 'Репозиторий'
+  public readMe!: string
 
   private _destroy$: Subject<boolean> = new Subject<boolean>()
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private searchingService: SearchingService
+    private searchingService: SearchingService,
+    private markdownService: MarkdownService
   ) {}
+
+
+  parseMdText(text: string): string | Promise<string> {
+    return this.markdownService.parse(text)
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -36,7 +44,6 @@ export class RepositoryComponent implements OnInit, OnDestroy {
     this._destroy$.next(true)
     this._destroy$.unsubscribe()
   }
-
   public showInfoFor(cardName: string): void {
     this.isUserCard = cardName === 'Автор'
   }

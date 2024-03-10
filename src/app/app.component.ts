@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { provideMarkdown } from 'ngx-markdown';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet],
+  providers: [
+    provideMarkdown(),
+      ],
 })
 export class AppComponent {
 

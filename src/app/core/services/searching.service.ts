@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, WritableSignal, signal } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import {
+  IGitHubReadmeResponse,
   IGitHubRepositoryResponse,
   IGitHubResponse,
   IGutHubUserResponse,
@@ -37,7 +38,7 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = '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'
+  private readonly _token = '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'
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
@@ -93,15 +94,34 @@ export class SearchingService {
 
         return this.http
           .get<IGutHubUserResponse>(userUrl, { headers })
-          .pipe(map(user => this.mapToRepository(repoResponse, user)))
+          .pipe(
+            switchMap((user) => {
+              const readmeUrl = `${this._apiUrl}/repositories/${id}/readme`;
+              return this.http.get<IGitHubReadmeResponse>(readmeUrl, { headers }).pipe(
+                map((readme) => {
+                  return this.mapToRepository(repoResponse, user, readme)
+                })
+              )
+            })
+          )
       })
     )
   }
 
+
+  // private fetchReadmeContent(repositoryId: number, headers: HttpHeaders): Observable<string> {
+  //   const readmeUrl = `${this._apiUrl}/repositories/${repositoryId}/readme`
+  //   return this.http.get<{ content: string }>(readmeUrl, { headers }).pipe(
+  //     map((response: { content: string }) => atob(response.content))
+  //   );
+  // }
+
   private mapToRepository(
     repository: IGitHubRepositoryResponse,
-    owner: IGutHubUserResponse
+    owner: IGutHubUserResponse,
+    readme: IGitHubReadmeResponse,
   ): IRepository {
+    const readMeContent: string = atob(readme.content)
     return {
       id: repository.id,
       name: repository.name,
@@ -121,6 +141,8 @@ export class SearchingService {
       created_at: repository.created_at,
       html_url: repository.html_url,
       homepage: repository.homepage,
+      readme_url: readme.download_url,
+      readme_content: readMeContent
     }
   }
 }
