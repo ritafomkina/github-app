@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable, WritableSignal, signal } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import {
@@ -38,7 +38,6 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = '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'
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
@@ -66,11 +65,8 @@ export class SearchingService {
     language?: string
   ): Observable<IGitHubRepositoryResponse[]> {
     const searchRepoUrl = `${this._apiUrl}/search/repositories?q=${searchTerm}${language ? `+language:${language}` : ''}&per_page=${this._repoPerPage}&page=${this.repositoriesPage}`
-    const headers = new HttpHeaders({
-      Authorization: `token ${this._token}`,
-    })
 
-    return this.http.get<IGitHubResponse>(searchRepoUrl, { headers }).pipe(
+    return this.http.get<IGitHubResponse>(searchRepoUrl).pipe(
       map(response => response.items),
       catchError(error => {
         console.error('Error fetching repositories:', error)
@@ -82,21 +78,17 @@ export class SearchingService {
   public fetchRepositoryById(id: number): Observable<IRepository> {
     const repoUrl = `${this._apiUrl}/repositories/${id}`
 
-    const headers = new HttpHeaders({
-      Authorization: `token ${this._token}`,
-    })
-
-    return this.http.get<IGitHubRepositoryResponse>(repoUrl, { headers }).pipe(
+    return this.http.get<IGitHubRepositoryResponse>(repoUrl).pipe(
       switchMap((repoResponse: IGitHubRepositoryResponse) => {
         const userId = repoResponse.owner.id
         const userUrl = `${this._apiUrl}/user/${userId}`
 
         return this.http
-          .get<IGutHubUserResponse>(userUrl, { headers })
+          .get<IGutHubUserResponse>(userUrl)
           .pipe(
             switchMap((user) => {
               const readmeUrl = `${this._apiUrl}/repositories/${id}/readme`;
-              return this.http.get<IGitHubReadmeResponse>(readmeUrl, { headers }).pipe(
+              return this.http.get<IGitHubReadmeResponse>(readmeUrl).pipe(
                 map((readme) => {
                   return this.mapToRepository(repoResponse, user, readme)
                 })
