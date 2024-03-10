@@ -38,7 +38,7 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = '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'
+  private readonly _token = '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'
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
@@ -107,14 +107,6 @@ export class SearchingService {
       })
     )
   }
-
-
-  // private fetchReadmeContent(repositoryId: number, headers: HttpHeaders): Observable<string> {
-  //   const readmeUrl = `${this._apiUrl}/repositories/${repositoryId}/readme`
-  //   return this.http.get<{ content: string }>(readmeUrl, { headers }).pipe(
-  //     map((response: { content: string }) => atob(response.content))
-  //   );
-  // }
 
   private mapToRepository(
     repository: IGitHubRepositoryResponse,
