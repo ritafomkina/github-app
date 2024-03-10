@@ -1,8 +1,9 @@
 .searching {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   &__header {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
   &__title {
     font-size: 1.5rem;
@@ -12,30 +13,40 @@
     display: flex;
     flex-wrap: wrap;
   }
-  &__result{
-    background-color: #d0f29e;
-    overflow-x: auto;
-    max-height: 700px;
+  &__result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
+  &__card {
+    cursor: pointer;
+  }
+  &__loader {
+    align-self: center;
+  }
+  &__emptу {
+    align-self: center;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.searching__icon {
-}
-.searching__input {
+.emptу {
+  &__description {
+    margin-top: 1.25rem;
+  }
 }
 
-.form-full-width{
+.form-full-width {
   width: 30rem;
 }
 .mdc-text-field__input {
   font-size: 1rem !important;
 }
 
-mat-form-field {
-  padding: 0 1rem;
-}
-
-.searching__loader {
-  margin: 0 auto;
+.form__field:not(:last-child) {
+  margin-right: 2rem;
 }

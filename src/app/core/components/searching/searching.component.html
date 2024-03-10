@@ -2,32 +2,52 @@
   <div class="searching__header">
     <h3 class="searching__title">Введите название репозитория</h3>
 
-   <form class="searching__form">
-  <mat-form-field class="form-full-width">
-    <input
-    matInput #message maxlength="100" placeholder="..."
-    (input)="search($event)">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Выберите язык</mat-label>
-    <mat-select>
-      @for (language of languages; track language) {
-        <mat-option [value]="language">{{language}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-</form>
-
-
+    <form class="searching__form" [formGroup]="searchingForm">
+      <mat-form-field class="form__field form-full-width">
+        <input
+          matInput
+          #message
+          maxlength="100"
+          placeholder="..."
+          formControlName="searchingTerm" />
+      </mat-form-field>
+      <mat-form-field class="form__field form-full-width">
+        <mat-label>Выберите язык</mat-label>
+        <mat-select formControlName="language">
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ language }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
   </div>
-  <div class="searching__result"
-  (scroll)="onScroll($event)">
-    @for (card of cards; track card) {
-      <app-repository-card [card]="card"></app-repository-card>
-    }
-  </div>
-  <mat-spinner
-  *ngIf="isLoading"
-  class="searching__loader"></mat-spinner>
 
+  <ng-container>
+    <ul *ngIf="cards.length" class="searching__results">
+      <cdk-virtual-scroll-viewport
+        role="presentation"
+        scrollWindow
+        [itemSize]="itemSize"
+        (scrolledIndexChange)="loadMore()">
+        <li *cdkVirtualFor="let card of cards">
+          <app-repository-card
+            class="searching__card"
+            [card]="card"
+            (click)="navigateToRepositoryPage(card.id)"></app-repository-card>
+        </li>
+      </cdk-virtual-scroll-viewport>
+    </ul>
+
+    <div class="searching__emptу" *ngIf="isEmptyResult">
+      <h3 class="emptу__title">Ой, ничего не нашлось</h3>
+      <p class="emptу__description">
+        По вашему запросу нет репозиториев. Но не волнуйтесь, вы всегда можете
+        пойти погулять
+      </p>
+    </div>
+
+    <div *ngIf="isLoading && !cards.length" class="searching__loader">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
 </div>

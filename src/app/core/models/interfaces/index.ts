@@ -1,1 +1,2 @@
-export * from './repository'
+export * from './IRepository'
+export * from './IGithubResponse'

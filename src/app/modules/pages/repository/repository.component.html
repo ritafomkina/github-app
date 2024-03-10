@@ -1,3 +1,46 @@
-<div>
+<div class="repository" *ngIf="data | async as repository">
+
+  <div class="repository__control-card">
+    <div class="repository__radio-group">
+      @for (
+      radioButton of radioButtonArray;
+      track radioButton;
+      let id = $index
+      ) {
+      <input type="radio" class="radio-group__btn-check" autocomplete="off" [checked]="radioButton === defaultCheck"
+        [value]="radioButton" name="btnRadio" id="btnradio{{id}}" (change)="showInfoFor(radioButton)" />
+      <label class="radio-group__btn" for="btnradio{{id}}">{{
+        radioButton
+        }}</label>
+      }
+    </div>
+  </div>
+
+  <div *ngIf="isUserCard" class="repository__info-card">
+    <img class="repository__item repository__author-avatar" [src]="repository.owner.avatar_url" alt="repo-gh-avatar">
+    <div class="repository__item">Login: {{repository.owner.login}}</div>
+    <div class="repository__item">Name: {{repository.owner.name}}</div>
+    <div class="repository__item">Followers: {{repository.owner.followers}}</div>
+    <div class="repository__item">Following: {{repository.owner.following}}</div>
+    <div class="repository__item">Account Creation: {{repository.owner.created_at | date: 'dd.MM.yyyy'}}</div>
+  </div>
+
+  <div class="repository__info-card" *ngIf="!isUserCard">
+
+    <div class="repository__item">Name: {{repository.name}}</div>
+    <div class="repository__item">Stars: {{repository.stargazers_count}}</div>
+    <div class="repository__item">Forks: {{repository.forks_count}}</div>
+    <div class="repository__item">Viewers: {{repository.watchers_count}}</div>
+    <div class="repository__item">Creation Date: {{repository.created_at | date: 'dd.MM.yyyy'}}</div>
+    <div class="repository__item">Language: {{repository.language}}</div>
+
+    <div class="repository__item"> <app-link class="repository__item" linkText="Go to GitHub"
+        href="{{repository.html_url}}">
+      </app-link></div>
+
+    <div class="repository__item"> <app-link *ngIf="repository.homepage" class="repository__item"
+        linkText="Go to website" href="{{repository.homepage}}"></app-link></div>
+
+  </div>
 
 </div>

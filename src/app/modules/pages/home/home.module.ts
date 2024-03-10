@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { HomeRoutingModule } from './home-routing.module'
-import { HomeComponent } from './home.component'
 import { CommonModule } from '@angular/common'
+import { HomeComponent } from './home.component'
 import { SearchingComponent } from '@core'
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonComponent } from '@shared/ui'
 
 
 @NgModule({
@@ -14,8 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
     HomeRoutingModule,
     CommonModule,
     SearchingComponent,
-    MatButtonModule,
+    ButtonComponent,
   ],
 })
 export class HomeModule {}
-console.log('home')

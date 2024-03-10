@@ -1,3 +1,81 @@
-app-calculator {
-  margin-top: 6.25rem;
+:host {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+.repository {
+  width: 60%;
+  height: 80%;
+  padding: 4rem;
+  &__control-card,
+  &__info-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 0.5px solid #e1e3e5;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+  }
+  &__radio-group {
+    background: #f5f5f5 !important;
+    padding: 3px;
+    border-radius: 14px;
+    height: 56px;
+    input {
+      font-family: "Roboto-Regular";
+    }
+
+    label {
+      padding: 0.75rem;
+      font-family: "Roboto-Regular";
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      color: #000000;
+      border-radius: 12px;
+      width: 50%;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    }
+  }
+  &__info-card {
+    display: flex;
+    flex-direction: column;
+  }
+  &__author-avatar {
+    width: 5rem;
+    border-radius: 100%;
+  }
+  &__item {
+    font-size: 1.5rem;
+  }
+  &__item:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.radio-group__btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.radio-group__btn-check:checked + .radio-group__btn {
+  transition: 0.5s;
+  font-family: "Roboto-Regular";
+  letter-spacing: -0.01em;
+  border-radius: 12px;
+  color: #000000;
+  background: #ffffff !important;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.07);
+  border: #fff0;
+  height: 48px;
 }
