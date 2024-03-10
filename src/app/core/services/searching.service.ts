@@ -38,7 +38,7 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = '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'
+  private readonly _token = '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'
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
