@@ -31,8 +31,6 @@
       "@shared/*": ["./app/shared/*"],
       "@assets": ["./assets"],
       "@assets/*": ["./assets/*"],
-      "@environments": ["./environments"],
-      "@environments/*": ["./environments/*"]
     }
   },
   "angularCompilerOptions": {

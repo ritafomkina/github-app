@@ -8,7 +8,6 @@ import {
   IGutHubUserResponse,
   IRepository,
 } from '@core'
-import { environment } from '@environments/environment.prod'
 import { Observable, catchError, map, of, switchMap } from 'rxjs'
 
 @Injectable({
@@ -39,8 +38,7 @@ export class SearchingService {
   ]
 
   public readonly form: FormGroup
-  private readonly _token = environment.ghToken;
-
+  private readonly _token = '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'
   private readonly _apiUrl = 'https://api.github.com'
   private readonly _repositoriesPage: WritableSignal<number> = signal(1)
   private _repoPerPage: number = 10
