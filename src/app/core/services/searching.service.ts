@@ -75,7 +75,9 @@ export class SearchingService {
     )
   }
 
-  public getRepositoryInfo(repositoryId: number): Observable<IRepository> {
+  public getRepositoryInfo(
+    repositoryId: number
+    ): Observable<IRepository> {
     return this.fetchRepositoryById(repositoryId).pipe(
       switchMap((repoResponse: IGitHubRepositoryResponse) => {
         const userId = repoResponse.owner.id
@@ -98,7 +100,9 @@ export class SearchingService {
     return this.http.get<IGitHubRepositoryResponse>(repoUrl)
   }
 
-  private fetchUser(userId: number): Observable<IGutHubUserResponse> {
+  private fetchUser(
+    userId: number
+    ): Observable<IGutHubUserResponse> {
     const userUrl = `${this._apiUrl}/user/${userId}`
     return this.http.get<IGutHubUserResponse>(userUrl)
   }

@@ -19,19 +19,19 @@
   <div *ngIf="isUserCard" class="repository__info-card">
     <img class="repository__item repository__author-avatar" [src]="repository.owner.avatar_url" alt="repo-gh-avatar">
     <div class="repository__item">Login: {{repository.owner.login}}</div>
-    <div class="repository__item">Name: {{repository.owner.name}}</div>
-    <div class="repository__item">Followers: {{repository.owner.followers}}</div>
-    <div class="repository__item">Following: {{repository.owner.following}}</div>
-    <div class="repository__item">Account Creation: {{repository.owner.created_at | date: 'dd.MM.yyyy'}}</div>
+    <div class="repository__item">Автор: {{repository.owner.name}}</div>
+    <div class="repository__item">Подписчики: {{repository.owner.followers}}</div>
+    <div class="repository__item">Подписок: {{repository.owner.following}}</div>
+    <div class="repository__item">Аккаунт создан: {{repository.owner.created_at | date: 'dd.MM.yyyy'}}</div>
   </div>
 
   <div class="repository__info-card" *ngIf="!isUserCard">
-    <div class="repository__item">Name: {{repository.name}}</div>
+    <div class="repository__item">Название: {{repository.name}}</div>
     <div class="repository__item">Stars: {{repository.stargazers_count}}</div>
     <div class="repository__item">Forks: {{repository.forks_count}}</div>
     <div class="repository__item">Viewers: {{repository.watchers_count}}</div>
-    <div class="repository__item">Creation Date: {{repository.created_at | date: 'dd.MM.yyyy'}}</div>
-    <div class="repository__item">Language: {{repository.language}}</div>
+    <div class="repository__item">Репозиторий создан: {{repository.created_at | date: 'dd.MM.yyyy'}}</div>
+    <div class="repository__item">Язык репозитория: {{repository.language}}</div>
     <div class="repository__item"> <app-link class="repository__item" linkText="Go to GitHub"
         href="{{repository.html_url}}">
       </app-link></div>
