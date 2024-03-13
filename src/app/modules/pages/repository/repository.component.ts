@@ -25,17 +25,12 @@ export class RepositoryComponent implements OnInit, OnDestroy {
     private markdownService: MarkdownService
   ) {}
 
-
-  parseMdText(text: string): string | Promise<string> {
-    return this.markdownService.parse(text)
-  }
-
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       const { id } = params
 
       this.data = this.searchingService
-        .fetchRepositoryById(id)
+        .getRepositoryInfo(id)
         .pipe(takeUntil(this._destroy$))
     })
   }
@@ -44,6 +39,11 @@ export class RepositoryComponent implements OnInit, OnDestroy {
     this._destroy$.next(true)
     this._destroy$.unsubscribe()
   }
+
+  public parseMdText(text: string): string | Promise<string> {
+    return this.markdownService.parse(text)
+  }
+
   public showInfoFor(cardName: string): void {
     this.isUserCard = cardName === 'Автор'
   }

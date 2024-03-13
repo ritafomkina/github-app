@@ -69,3 +69,9 @@ body {
   background-image: url('assets/images/pattern1.png');
 
 }
+
+.cdk-virtual-scroll-content-wrapper{
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}

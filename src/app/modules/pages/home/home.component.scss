@@ -1,36 +1,41 @@
-.main {
+.home-page {
   padding: 2rem 4rem;
   &__content {
     margin-top: 3rem;
     max-width: 80rem;
   }
+  &__slogan {
+    font-family: "Roboto-Italic";
+    font-size: 1.25rem;
+    line-height: 1;
+    max-width: 40rem;
+    padding: 1rem;
+    margin: 0 0 0 auto;
+  }
+  &__title {
+    font-family: "Inter-SemiBold";
+    font-size: 3rem;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: #242424;
+  }
+  &__description {
+    font-family: "Inter-Regular";
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    color: #737373;
+  }
+  &__btn {
+    margin-top: 2rem;
+  }
+  &__searching {
+    max-width: 62rem;
+    display: block;
+  }
 }
 
-.main__slogan {
-  font-family: "Roboto-Italic";
-  font-size: 1.25rem;
-  line-height: 1;
-  max-width: 40rem;
-  padding: 1rem;
-  margin: 0 0 0 auto;
-}
-.main__title {
-  font-family: "Inter-SemiBold";
-  font-size: 3rem;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  color: #242424;
-}
-.main__description {
-  font-family: "Inter-Regular";
-  margin-top: 2rem;
-  font-size: 1.25rem;
-  color: #737373;
-}
-
-.main__searching {
-}
-
-.main__btn {
-  margin-top: 2rem;
+@media screen and (max-width: 767px) {
+  .home-page {
+    padding: 1.75rem;
+  }
 }

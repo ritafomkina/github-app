@@ -8,7 +8,7 @@ import {
   IGutHubUserResponse,
   IRepository,
 } from '@core'
-import { Observable, catchError, map, of, switchMap } from 'rxjs'
+import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -75,34 +75,43 @@ export class SearchingService {
     )
   }
 
-  public fetchRepositoryById(id: number): Observable<IRepository> {
-    const repoUrl = `${this._apiUrl}/repositories/${id}`
-
-    return this.http.get<IGitHubRepositoryResponse>(repoUrl).pipe(
+  public getRepositoryInfo(repositoryId: number): Observable<IRepository> {
+    return this.fetchRepositoryById(repositoryId).pipe(
       switchMap((repoResponse: IGitHubRepositoryResponse) => {
         const userId = repoResponse.owner.id
-        const userUrl = `${this._apiUrl}/user/${userId}`
-
-        return this.http
-          .get<IGutHubUserResponse>(userUrl)
-          .pipe(
-            switchMap((user) => {
-              const readmeUrl = `${this._apiUrl}/repositories/${id}/readme`;
-              return this.http.get<IGitHubReadmeResponse>(readmeUrl).pipe(
-                map((readme) => {
-                  return this.mapToRepository(repoResponse, user, readme)
-                })
-              )
-            })
+        return forkJoin({
+          user: this.fetchUser(userId),
+          readme: this.fetchReadme(repositoryId),
+        }).pipe(
+          map(({ user, readme }) =>
+            this.mapToRepository(repoResponse, user, readme)
           )
+        )
       })
     )
+  }
+
+  private fetchRepositoryById(
+    id: number
+  ): Observable<IGitHubRepositoryResponse> {
+    const repoUrl = `${this._apiUrl}/repositories/${id}`
+    return this.http.get<IGitHubRepositoryResponse>(repoUrl)
+  }
+
+  private fetchUser(userId: number): Observable<IGutHubUserResponse> {
+    const userUrl = `${this._apiUrl}/user/${userId}`
+    return this.http.get<IGutHubUserResponse>(userUrl)
+  }
+
+  private fetchReadme(id: number): Observable<IGitHubReadmeResponse> {
+    const readmeUrl = `${this._apiUrl}/repositories/${id}/readme`
+    return this.http.get<IGitHubReadmeResponse>(readmeUrl)
   }
 
   private mapToRepository(
     repository: IGitHubRepositoryResponse,
     owner: IGutHubUserResponse,
-    readme: IGitHubReadmeResponse,
+    readme: IGitHubReadmeResponse
   ): IRepository {
     const readMeContent: string = atob(readme.content)
     return {
@@ -125,7 +134,7 @@ export class SearchingService {
       html_url: repository.html_url,
       homepage: repository.homepage,
       readme_url: readme.download_url,
-      readme_content: readMeContent
+      readme_content: readMeContent,
     }
   }
 }

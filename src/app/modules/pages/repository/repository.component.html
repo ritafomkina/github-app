@@ -26,23 +26,18 @@
   </div>
 
   <div class="repository__info-card" *ngIf="!isUserCard">
-
     <div class="repository__item">Name: {{repository.name}}</div>
     <div class="repository__item">Stars: {{repository.stargazers_count}}</div>
     <div class="repository__item">Forks: {{repository.forks_count}}</div>
     <div class="repository__item">Viewers: {{repository.watchers_count}}</div>
     <div class="repository__item">Creation Date: {{repository.created_at | date: 'dd.MM.yyyy'}}</div>
     <div class="repository__item">Language: {{repository.language}}</div>
-
     <div class="repository__item"> <app-link class="repository__item" linkText="Go to GitHub"
         href="{{repository.html_url}}">
       </app-link></div>
-
     <div class="repository__item"> <app-link *ngIf="repository.homepage" class="repository__item"
         linkText="Go to website" href="{{repository.homepage}}"></app-link></div>
-
   </div>
 
  <div class="repository__info-card repository__info-card_markdown-card" [innerHTML]="parseMdText(repository.readme_content)"></div>
-
 </div>

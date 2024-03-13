@@ -1,17 +1,17 @@
-<div class="main">
-  <div class="main__slogan">«Все когда-то были джунами»
+<div class="home-page">
+  <div class="home-page__slogan">«Все когда-то были джунами»
     – Сальвадор Дали.
   </div>
-  <div class="main__content">
-    <h1 class="main__title">GitHub Explorer</h1>
-    <p class="main__description">Приложение для поиска репозиториев на GitHub! Исследуйте мир кода, находите интересные
+  <div class="home-page__content">
+    <h1 class="home-page__title">GitHub Explorer</h1>
+    <p class="home-page__description">Приложение для поиска репозиториев на GitHub! Исследуйте мир кода, находите интересные
       проекты и присоединяйтесь к сообществу разработчиков. Простой в использовании интерфейс и мощный поиск помогут вам
       найти именно то, что вам нужно. Узнайте о последних трендах, исследуйте новые технологии и делитесь своими
       находками с друзьями. Давайте начнем исследовать GitHub вместе!</p>
 
-    <app-button class="main__btn" btnText="Let's go" (click)="showSearching()"></app-button>
+    <app-button class="home-page__btn" btnText="Let's go" (click)="showSearching()"></app-button>
 
-    <app-searching *ngIf="isVisibleSearching" class="main__searching"></app-searching>
+    <app-searching *ngIf="isVisibleSearching" class="home-page__searching"></app-searching>
   </div>
 
 </div>

@@ -57,8 +57,9 @@ export class SearchingComponent implements OnInit, OnDestroy {
   public viewPort?: CdkVirtualScrollViewport
 
   static readonly _itemSizes = {
-    small: 10,
-    medium: 50,
+    // small: 10,
+    small: 160,
+    // medium: 50,
     large: 80,
   }
 
@@ -71,7 +72,7 @@ export class SearchingComponent implements OnInit, OnDestroy {
   private _cards: WritableSignal<IRepository[]> = signal([])
   private _isLoading: WritableSignal<boolean> = signal(false)
   private _page: number = 1
-  private _showMin: number = 2
+  private _showMin: number = 10
   private _route: string = AppRoutes.REPOSITORY
   private _resizeObservable$?: Observable<Event>
   private _destroy$: Subject<boolean> = new Subject<boolean>()
@@ -116,14 +117,15 @@ export class SearchingComponent implements OnInit, OnDestroy {
   }
 
   public determineItemSize(): void {
-    if (
-      window.innerWidth < BreakPoint.MD &&
-      this._viewPortSize !== ViewPortSize.MD
-    ) {
-      this.itemSize = SearchingComponent._itemSizes.medium
-      this._viewPortSize = ViewPortSize.MD
-      this.viewPort?.checkViewportSize()
-    } else if (
+    // if (
+      // window.innerWidth < BreakPoint.MD &&
+      // this._viewPortSize !== ViewPortSize.MD
+    // ) {
+      // this.itemSize = SearchingComponent._itemSizes.medium
+      // this._viewPortSize = ViewPortSize.MD
+      // this.viewPort?.checkViewportSize()
+    // } else if (
+      if (
       window.innerHeight < BreakPoint.SM &&
       this._viewPortSize !== ViewPortSize.SM
     ) {
@@ -131,7 +133,8 @@ export class SearchingComponent implements OnInit, OnDestroy {
       this._viewPortSize = ViewPortSize.SM
       this.viewPort?.checkViewportSize()
     } else if (
-      window.innerWidth > BreakPoint.MD &&
+      // window.innerWidth > BreakPoint.MD &&
+      window.innerWidth > BreakPoint.SM &&
       this._viewPortSize !== ViewPortSize.LG
     ) {
       this.itemSize = SearchingComponent._itemSizes.large
@@ -159,6 +162,29 @@ export class SearchingComponent implements OnInit, OnDestroy {
     }
   }
 
+  // private fake = {
+  //   id: 1,
+  //   name: "segwrfweefetring",
+  //   owner: {
+  //     id: 1,
+  //     login: "strwefewfewfewwing",
+  //     name: "striewfwefwefewfewfewfewng",
+  //     avatar_url: "string",
+  //     followers: 2,
+  //     following: 3,
+  //     created_at: "string",
+  //   },
+  //   stargazers_count: 3,
+  //   forks_count: 4,
+  //   watchers_count: 5,
+  //   language: "string",
+  //   created_at: "12.43",
+  //   html_url: "string",
+  //   homepage: "string",
+  //   readme_url: "string",
+  //   readme_content: "string"
+  // }
+
   private loadData(keyWord: string, language?: string): void {
     this._isLoading.set(true)
     this.searchingService
@@ -169,6 +195,7 @@ export class SearchingComponent implements OnInit, OnDestroy {
       )
       .subscribe(repos => {
         this._cards.set([...this._cards(), ...repos])
+        // this._cards.set(new Array(10).fill(this.fake))
         this.isEmptyResult = !this._cards().length
         this._isLoading.set(false)
       })
