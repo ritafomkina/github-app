@@ -13,7 +13,7 @@ import { Observable, Subject, takeUntil } from 'rxjs'
 export class RepositoryComponent implements OnInit, OnDestroy {
   public data!: Observable<IRepository>
   public radioButtonArray: string[] = ['Автор', 'Репозиторий']
-  public isUserCard: boolean = false
+  public isAuthorCard: boolean = false
   public defaultCheck: string = 'Репозиторий'
   public readMe!: string
 
@@ -45,6 +45,6 @@ export class RepositoryComponent implements OnInit, OnDestroy {
   }
 
   public showInfoFor(cardName: string): void {
-    this.isUserCard = cardName === 'Автор'
+    this.isAuthorCard = cardName === 'Автор'
   }
 }

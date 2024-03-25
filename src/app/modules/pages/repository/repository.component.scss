@@ -7,8 +7,7 @@
 .repository {
   width: 80%;
   padding: 4rem;
-  &__control-card,
-  &__info-card {
+  &__card {
     padding: 2rem;
     border-radius: 1rem;
     border: 0.5px solid #e1e3e5;
@@ -44,21 +43,6 @@
         border-color 0.15s ease-in-out,
         box-shadow 0.15s ease-in-out;
     }
-  }
-  &__info-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  &__author-avatar {
-    width: 5rem;
-    border-radius: 100%;
-  }
-  &__item {
-    font-size: 1.5rem;
-  }
-  &__item:not(:last-child) {
-    margin-bottom: 1rem;
   }
 }
 

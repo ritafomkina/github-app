@@ -1,0 +1,8 @@
+<div class="author">
+  <img class="author__item author__item_avatar" [src]="author.avatar_url" alt="repo-author-avatar">
+  <div class="author__item">Login: {{author.login}}</div>
+  <div class="author__item">Автор: {{author.name}}</div>
+  <div class="author__item">Подписчики: {{author.followers}}</div>
+  <div class="author__item">Подписок: {{author.following}}</div>
+  <div class="author__item">Аккаунт создан: {{author.created_at | date: 'dd.MM.yyyy'}}</div>
+</div>

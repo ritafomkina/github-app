@@ -1,6 +1,6 @@
 <div class="repository" *ngIf="data | async as repository">
 
-  <div class="repository__control-card">
+  <div class="repository__card">
     <div class="repository__radio-group">
       @for (
       radioButton of radioButtonArray;
@@ -16,28 +16,16 @@
     </div>
   </div>
 
-  <div *ngIf="isUserCard" class="repository__info-card">
-    <img class="repository__item repository__author-avatar" [src]="repository.owner.avatar_url" alt="repo-gh-avatar">
-    <div class="repository__item">Login: {{repository.owner.login}}</div>
-    <div class="repository__item">Автор: {{repository.owner.name}}</div>
-    <div class="repository__item">Подписчики: {{repository.owner.followers}}</div>
-    <div class="repository__item">Подписок: {{repository.owner.following}}</div>
-    <div class="repository__item">Аккаунт создан: {{repository.owner.created_at | date: 'dd.MM.yyyy'}}</div>
+  <div class="repository__card">
+    <app-author-content
+    *ngIf="isAuthorCard"
+    [author]="repository.owner"></app-author-content>
+    <app-repo-content
+    *ngIf="!isAuthorCard"
+    [repository]="repository"
+    ></app-repo-content>
   </div>
 
-  <div class="repository__info-card" *ngIf="!isUserCard">
-    <div class="repository__item">Название: {{repository.name}}</div>
-    <div class="repository__item">Stars: {{repository.stargazers_count}}</div>
-    <div class="repository__item">Forks: {{repository.forks_count}}</div>
-    <div class="repository__item">Viewers: {{repository.watchers_count}}</div>
-    <div class="repository__item">Репозиторий создан: {{repository.created_at | date: 'dd.MM.yyyy'}}</div>
-    <div class="repository__item">Язык репозитория: {{repository.language}}</div>
-    <div class="repository__item"> <app-link class="repository__item" linkText="Go to GitHub"
-        href="{{repository.html_url}}">
-      </app-link></div>
-    <div class="repository__item"> <app-link *ngIf="repository.homepage" class="repository__item"
-        linkText="Go to website" href="{{repository.homepage}}"></app-link></div>
-  </div>
-
- <div class="repository__info-card repository__info-card_markdown-card" [innerHTML]="parseMdText(repository.readme_content)"></div>
+ <div class="repository__card repository__info-card_markdown-card"
+ [innerHTML]="parseMdText(repository.readme_content)"></div>
 </div>

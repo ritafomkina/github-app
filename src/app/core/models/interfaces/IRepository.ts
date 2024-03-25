@@ -1,7 +1,7 @@
 export interface IRepository {
   id: number
   name: string
-  owner: Owner
+  owner: IOwner
   stargazers_count: number
   forks_count: number,
   watchers_count: number,
@@ -13,7 +13,7 @@ export interface IRepository {
   readme_content: string,
 }
 
-interface Owner
+export interface IOwner
 {
   id: number
     login: string
